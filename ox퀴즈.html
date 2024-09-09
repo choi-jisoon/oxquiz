@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>oxQuiz</title>
+   <!-- CSS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+   <style>
+      body {
+         background: #DDD;font-size: 20px;
+         font-family: 'Pretendard', sans-serif;
+      }
+      button {
+         cursor: pointer;font-size: 24px;font-weight: 600;
+         padding: .7em 1em;
+      }
+      #wrap {
+         display: flex;justify-content: center;
+         padding-top: 150px;
+      }
+      #intro, #quiz_wrap, #result_wrap, #wrong_wrap {
+         background: #FFF;padding: 40px;
+         min-width: 600px;text-align: center;
+         border-radius: 10px;border: 1px solid #AAA ;
+      }
+      #intro h1 {font-size: 35px;font-weight: 700;margin-bottom: 20px;}
+      #intro ul {margin-bottom: 40px;}
+      #intro li {line-height: 40px;}
+
+      #quiz_wrap {display: none;}
+      #quiz_wrap h2 {
+         font-size: 24px;font-weight: 800;margin-bottom: 24px;
+      }
+      #quiz_wrap p {font-size: 36px;margin-bottom: 40px;}
+
+      #answer_btns button {
+         margin: 0 5px;padding: 30px 100px;font-size: 60px;
+      }
+      #answer_btns .o {color: dodgerblue;}
+      #answer_btns .x {color: hotpink;}
+
+      #result_wrap {display: none;}
+      #result_wrap h2 {font-size: 35px; font-weight: 700; margin-bottom: 20px;}
+      #result_wrap .score {margin-bottom: 30px;}
+      #result_wrap .score span{font-size: 28px;}
+
+      #wrong_wrap {display: none;}
+      #wrong_wrap h2 {font-size: 24px; font-weight: 800; margin-bottom: 24px;}
+      #wrong_wrap ul {margin-bottom: 30px;}
+      #wrong_wrap li {margin-bottom: 15px;}
+      .timer {position: absolute; top: 100px;}
+   </style>
+   <!-- JS -->
+   <script src="js/quiz.js" defer type="module"></script>
+   </head>
+   <body>
+   <div id="wrap">
+      <div id="intro">
+         <h1>OX Quiz</h1>
+         <ul>
+         <li>총 10문제가 출제됩니다.</li>
+         <li>정답을 선택하면 자동으로 다음 문제</li>
+         <li></li>
+         <li></li>
+         <li></li>
+         </ul>
+         <button class="quiz_start">시작하기</button>
+      </div>
+      <div id="quiz_wrap">
+         <h2 id="quiz_no"></h2>
+         <p id="question"></p>
+         <div id="answer_btns">
+         <button class="o">O</button>
+         <button class="x">X</button>
+         </div>
+      </div>
+      <div id="result_wrap">
+         <h2>결과 보기</h2>
+         <p class="score"></p>
+         <div id="result_btns">
+            <button class="wrong_answer">오답 보기</button>
+         </div>
+      </div>
+      <div id="wrong_wrap">
+         <h2>오답 확인</h2>
+         <ul id="wrong_answer_list">
+            <!-- js로 li 들어갈 곳 -->
+         </ul>
+         <div id="wrong_btns">
+            <button class="restart">다시 풀기</button>
+         </div>
+      </div>
+      <div class="timer">0 : 00</div>
+   </div>
+</body>
+</html>
+
+<!--
+  * 정답을 선택하면 자동으로 다음 문제 => 문제별 정답 결과 노출 여부
+  * 시간 제한 : 문항별, 전체 시간(10초)
+   - 시간 안에 선택을 못하면 => 오답
+
+  * 점수 환산
+   : 못 푼 문제만큼 별점 || 5초 안에 다 푼 경우 가점
+  * 점수 공개, 오답 공개
+  * 오답 풀이 제공 여부
+-->
